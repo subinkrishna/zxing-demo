@@ -15,11 +15,6 @@ import com.google.zxing.common.BitMatrix
 class BarcodeGenerator {
 
     companion object {
-
-        // Colors
-        private const val BLACK = 0xff000000.toInt()
-        private const val TRANSPARENT = Color.TRANSPARENT
-
         /**
          * Generates barcode [Bitmap]
          *
@@ -31,23 +26,40 @@ class BarcodeGenerator {
          * @param backgroundColor - bitmap background color
          * @return Returns [Bitmap] if the content is valid, else null
          */
+        @JvmStatic
         fun generateBitmap(
             content: String,
             @Px width: Int,
             @Px height: Int,
-            @ColorInt foregroundColor: Int = BLACK,
-            @ColorInt backgroundColor: Int = TRANSPARENT,
-            format: BarcodeFormat = BarcodeFormat.UPC_A
+            format: BarcodeFormat,
+            @ColorInt foregroundColor: Int = Color.BLACK,
+            @ColorInt backgroundColor: Int = Color.TRANSPARENT
         ): Bitmap? {
+            return generateBitMatrix(content, width, height, format)
+                ?.asBitmap(foregroundColor, backgroundColor)
+        }
+
+        /**
+         * Generates the [BitMatrix]
+         *
+         * @param content - content
+         * @param width - bitmap width in pixels
+         * @param height - bitmap height in pixels
+         * @param format - barcode format
+         * @return returns [BitMatrix] if the content is valid, else null
+         */
+        @JvmStatic
+        fun generateBitMatrix(
+            content: String,
+            @Px width: Int,
+            @Px height: Int,
+            format: BarcodeFormat
+        ): BitMatrix? {
             if (content.isBlank()) return null
             return try {
-                val bitMatrix = MultiFormatWriter().encode(
-                    content, format, width, height)
-                bitMatrix.asBitmap(
-                    foreground = foregroundColor,
-                    background = backgroundColor)
+                MultiFormatWriter().encode(content, format, width, height)
             } catch (t: Throwable) {
-                Log.e("BG", "Unable to generate bitmap!", t)
+                Log.e("BG", "Unable to generate bit matrix!", t)
                 null
             }
         }
