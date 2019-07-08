@@ -11,11 +11,12 @@
             android:id="@+id/code"
             android:layout_width="match_parent"
             android:background="#ddd"
+            android:scaleType="centerInside"
             android:layout_weight="1"
             android:layout_height="0dp"/>
 
     <TextView
-            android:id="@+id/codeText"
+            android:id="@+id/label"
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:layout_height="0dp"/>
