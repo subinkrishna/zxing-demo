@@ -2,8 +2,8 @@ package com.subinkrishna.zxing
 
 import android.graphics.Bitmap
 import android.graphics.Color
-import android.support.annotation.ColorInt
-import android.support.annotation.Px
+import androidx.annotation.ColorInt
+import androidx.annotation.Px
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.common.BitMatrix
