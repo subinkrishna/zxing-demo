@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <com.subinkrishna.zxing.BarcodeView
+        android:id="@+id/code"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#ddd" />
 
-    <com.subinkrishna.zxing.BarcodeImageView
-            android:id="@+id/code"
-            android:layout_width="match_parent"
-            android:background="#ddd"
-            android:layout_weight="1"
-            android:layout_height="0dp"/>
-
-    <TextView
-            android:id="@+id/label"
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="0dp"/>
+    <EditText
+        android:id="@+id/label"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
 </LinearLayout>
