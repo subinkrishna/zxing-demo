@@ -16,8 +16,8 @@
 package com.subinkrishna.zxing
 
 import android.content.Context
-import androidx.appcompat.widget.AppCompatImageView
 import android.util.AttributeSet
+import androidx.appcompat.widget.AppCompatImageView
 import com.google.zxing.BarcodeFormat
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -78,6 +78,11 @@ open class BarcodeView @JvmOverloads constructor(
   override fun onDetachedFromWindow() {
     super.onDetachedFromWindow()
     disposables.dispose()
+  }
+
+  fun setContent(content: String, format: BarcodeFormat, width: Int, height: Int) {
+    config = config.copy(content = content, format = format, width = width, height = height)
+    configStream.onNext(config)
   }
 
   fun setContent(content: String) {
